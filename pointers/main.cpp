@@ -30,7 +30,7 @@ int main()
   
   cout<<max(4,7);
   cout<<max({7,8,9});
-  cout<<8;
+ cout<<9;   
     
     return 0;
 }
