@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 struct Node { //*class to represent node (userdefined data type)
@@ -44,7 +44,7 @@ void insertAtTheEnd(int newValue) {
 
     else {
         Node* temp = head;
-        while(temp != NULL) {
+        while(temp->next != NULL) {
 
             temp = temp->next;
         }
@@ -93,23 +93,21 @@ void searchList(int value) {
     else {
         
         Node* temp = head;
-        int flag = 0;
+        bool found = false;
         while(temp != NULL) {
 
             if(temp->data == value) {
 
-                flag = 1;
+                found = true;
                 break;
             }
             temp = temp->next;
         }
         
-        (flag==1)?cout<<"The element is founded.\n":cout<<"The element is not founded.\n";
-        
+        cout << (found ? "The element is found.\n" : "The element is not found.\n");
     }
 }
-int main()
-{
+int main() {
     
     insertAtBeginning(10);
     insertAtTheEnd(60);
@@ -119,9 +117,9 @@ int main()
     insertAtBeginning(50);
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
-    printList(); // Output: 50 40 30 20 10
-    searchList(30);// Output: The element is founded.
-    searchList(60); // Output: The element is not founded.*/
+    printList(); // Output: 50 40 30 20 10 60
+    searchList(30); // Output: The element is found.
+    searchList(70); // Output: The element is not found.*/
     
     
     return 0;
