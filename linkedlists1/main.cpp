@@ -68,7 +68,7 @@ void printList() {
 
    if(isEmpty()) {
 
-    cout<< "The list is Empty !\n";
+    cout<< "The list is Empty!\n";
    }
 
    else {
@@ -87,20 +87,54 @@ void printOddList() {
 
     if(isEmpty()) {
 
-        cout<<"The list is empty\n";
+        cout<<"The list is empty!\n";
     }
 
     else {
 
         Node* temp = head;
+        bool found = false;
         while(temp != NULL) {
 
-            if((temp->data)&1) 
+            if((temp->data)&1) {
                 
                 cout << temp->data <<" ";
+                found = true;
+            }
             
             temp = temp->next;
         }
+        if(found == false)
+         cout<<"No odd numbers found in the list.";
+
+
+        cout<<"\n";
+    }
+}
+
+void printEvenList() {
+
+    if(isEmpty())
+        
+        cout<<"The list is empty!";
+    
+    else {
+
+        Node* temp = head;
+        bool found = false;
+        while(temp != NULL) {
+
+            if(!((temp->data)&1)) {
+
+                cout<<temp->data<<" ";
+                found = true;
+            }
+            temp = temp->next;
+        }
+
+        if(found == false)
+
+           cout<<"No even numbers found in the list.";
         cout<<"\n";
     }
 }
@@ -135,11 +169,15 @@ int main() {
     insertAtTheEnd(30);
     insertAtTheEnd(40);
     insertAtTheEnd(50);
+    insertAtTheEnd(55);
+    insertAtBeginning(60);
+    insertAtBeginning(65);
     insertAtBeginning(10);
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); // Output: 50 40 30 20 10 60
     printOddList(); // Output: 10 30 50
+    printEvenList(); // Output: 20 40 60
     searchList(30); // Output: The element is found.
     searchList(70); // Output: The element is not found.*/
     
