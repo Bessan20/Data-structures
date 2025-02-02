@@ -83,6 +83,27 @@ void printList() {
    }
 }
 
+void printOddList() {
+
+    if(isEmpty()) {
+
+        cout<<"The list is empty\n";
+    }
+
+    else {
+
+        Node* temp = head;
+        while(temp != NULL) {
+
+            if((temp->data)&1) 
+                
+                cout << temp->data <<" ";
+            
+            temp = temp->next;
+        }
+        cout<<"\n";
+    }
+}
 void searchList(int value) {
 
     if(isEmpty()) {
@@ -109,15 +130,16 @@ void searchList(int value) {
 }
 int main() {
     
+    insertAtTheEnd(20);
+    insertAtTheEnd(20);
+    insertAtTheEnd(30);
+    insertAtTheEnd(40);
+    insertAtTheEnd(50);
     insertAtBeginning(10);
-    insertAtTheEnd(60);
-    insertAtBeginning(20);
-    insertAtBeginning(30);
-    insertAtBeginning(40);
-    insertAtBeginning(50);
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); // Output: 50 40 30 20 10 60
+    printOddList(); // Output: 10 30 50
     searchList(30); // Output: The element is found.
     searchList(70); // Output: The element is not found.*/
     
