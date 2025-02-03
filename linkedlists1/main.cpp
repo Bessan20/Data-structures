@@ -54,7 +54,77 @@ void insertAtTheEnd(int newValue) {
     }
 }
 
+void insertBeforeGivenNode(int givenNode, int newValue) {
 
+    if(isEmpty()) {
+
+        cout<<"The list is empty !";
+    }
+
+    else {
+
+      bool found = false;
+      Node* curr = head;
+      Node* prev = head;
+      while(curr != NULL) {
+
+        
+        if(curr->data == givenNode) {
+
+            if(curr == head) 
+                 insertAtBeginning(newValue);  
+
+            else {         
+            Node* newNode = new Node();
+            newNode->data = newValue; 
+            newNode->next = curr; 
+            prev->next = newNode;
+            }
+            found = true;
+            cout<<"The given node added successfully.\n";
+            break;
+        }
+        prev = curr;
+        curr = curr->next;
+
+      }
+
+      if(found == false )
+         cout<<"The node is not found.\n";
+    }
+
+}
+
+void insertAfterGivenNode(int givenNode , int newValue) {
+
+    if(isEmpty()) 
+       
+       cout<<"The list is Empty!";
+    
+    else {
+
+        bool found = false;
+        Node* curr = head;
+        Node* after = head;
+        while(curr != NULL) {
+
+            if(curr->data == givenNode) {
+
+                Node* newNode = new Node();
+                newNode->data = newValue;
+                after = curr->next;
+                cout<<after->data<<" "<<curr->data<<" "<<newNode->data<<" ";
+                newNode->next = after;
+                cout<<"The given node added successfully.\n";
+                found = true;
+                break;
+            }
+            after = after->next;
+            curr = curr->next;
+        }
+        if(found == false)cout<<"The node is not found.\n";
+    }
+}
 int countList() {
 
     int count = 0;
@@ -176,10 +246,15 @@ int main() {
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); // Output: 50 40 30 20 10 60
-    printOddList(); // Output: 10 30 50
+    insertBeforeGivenNode(1,3);
+    printList();
+    insertAfterGivenNode(1,6);
+    printList();
+    cout<<"9";
+    /*printOddList(); // Output: 10 30 50
     printEvenList(); // Output: 20 40 60
     searchList(30); // Output: The element is found.
-    searchList(70); // Output: The element is not found.
+    searchList(70); // Output: The element is not found.*/
     
     
     return 0;
