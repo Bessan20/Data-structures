@@ -53,6 +53,33 @@ void insertAtTheEnd(int newValue) {
         temp->next = newNode;
     }
 }
+
+void deleteNode(int value) {
+
+    if(isEmpty()) {
+
+        cout<<"The list is empty !\n";
+    }
+
+    else {
+        Node* temp = head;
+        Node* temp1 = NULL;
+        while(temp != NULL) {
+
+            if(temp->data == value) {
+
+               temp = temp->next;
+               temp1->next = temp;
+               
+
+            }
+            else {
+                temp1= temp;
+                temp = temp->next;
+            }
+        }
+    }
+}
 int countList() {
 
     int count = 0;
@@ -164,18 +191,21 @@ void searchList(int value) {
 }
 int main() {
     
-    insertAtTheEnd(20);
+    insertAtTheEnd(1);
     insertAtTheEnd(20);
     insertAtTheEnd(30);
     insertAtTheEnd(40);
     insertAtTheEnd(50);
     insertAtTheEnd(55);
-    insertAtBeginning(60);
-    insertAtBeginning(65);
-    insertAtBeginning(10);
+    
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); // Output: 50 40 30 20 10 60
+    deleteNode(20);
+    deleteNode(1);
+    printList();
+    cout<<9;
+    /*
     printOddList(); // Output: 10 30 50
     printEvenList(); // Output: 20 40 60
     searchList(30); // Output: The element is found.
