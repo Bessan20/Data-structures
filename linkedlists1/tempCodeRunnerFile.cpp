@@ -1,1 +1,1 @@
-temp1->next =  newNode;
+cout<<after->data<<" "<<curr->data<<" "<<newNode->data<<" ";

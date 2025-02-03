@@ -71,15 +71,12 @@ void insertBeforeGivenNode(int givenNode, int newValue) {
         
         if(curr->data == givenNode) {
 
-            if(curr == head) 
-                 insertAtBeginning(newValue);  
-
-            else {         
+            curr = curr->next;         
             Node* newNode = new Node();
-            newNode->data = newValue; 
+            newNode->data = newValue;
             newNode->next = curr; 
-            prev->next = newNode;
-            }
+            cout<<prev->data<<" "<<curr->data<<"\n";
+            prev = newNode;
             found = true;
             cout<<"The given node added successfully.\n";
             break;
@@ -113,8 +110,8 @@ void insertAfterGivenNode(int givenNode , int newValue) {
                 Node* newNode = new Node();
                 newNode->data = newValue;
                 after = curr->next;
-                cout<<after->data<<" "<<curr->data<<" "<<newNode->data<<" ";
                 newNode->next = after;
+                curr->next = newNode;
                 cout<<"The given node added successfully.\n";
                 found = true;
                 break;
@@ -246,11 +243,10 @@ int main() {
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); // Output: 50 40 30 20 10 60
-    insertBeforeGivenNode(1,3);
+    insertBeforeGivenNode(1,4);
     printList();
-    insertAfterGivenNode(1,6);
+    insertAfterGivenNode(4,6);
     printList();
-    cout<<"9";
     /*printOddList(); // Output: 10 30 50
     printEvenList(); // Output: 20 40 60
     searchList(30); // Output: The element is found.
