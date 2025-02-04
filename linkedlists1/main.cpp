@@ -152,6 +152,63 @@ void printList() {
    }
 }
 
+void printKthNode(float k) {
+
+    if(isEmpty())
+
+       cout<<"The list is empty!\n";
+
+    else {
+
+        if((int(k) == k) && (k>0) && (k<=countList())) {
+
+            Node* temp = head;
+            int count = 1;
+            while(temp != NULL) {
+
+                if(count == k) {
+
+                    cout<<temp->data<<"\n";
+                    break;
+                }
+                temp = temp->next;
+                ++count;
+            }
+        }
+
+        else 
+
+           cout<<"Invalid postion!";
+    }
+}
+
+void printMiddleOfList() {
+
+    if(isEmpty()) 
+       
+       cout<<"The list is empty!";
+
+    else {
+          
+          int listLength = countList();
+          Node* temp = head;
+          int count = 1;
+        
+            while((count)<((listLength>>1))) {
+                
+                
+                temp = temp->next;
+                count++;
+
+            }
+        (listLength&1)?cout<<(temp->next)->data<<"\n":
+         cout<<(temp->data)<<" "<<(temp->next)->data<<"\n";
+            
+            
+
+        
+    }
+}
 void printOddList() {
 
     if(isEmpty()) {
@@ -242,15 +299,17 @@ int main() {
     
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
-    printList(); // Output: 50 40 30 20 10 60
-    insertBeforeGivenNode(1,4);
+    printList(); 
+    //insertBeforeGivenNode(1,4);
     printList();
     insertAfterGivenNode(4,6);
     printList();
-    /*printOddList(); // Output: 10 30 50
-    printEvenList(); // Output: 20 40 60
-    searchList(30); // Output: The element is found.
-    searchList(70); // Output: The element is not found.*/
+    printKthNode(3); 
+    printMiddleOfList();
+    /*printOddList(); 
+    printEvenList(); 
+    searchList(30); 
+    searchList(70); */
     
     
     return 0;
