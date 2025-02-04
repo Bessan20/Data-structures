@@ -1,1 +1,1 @@
-cout<<after->data<<" "<<curr->data<<" "<<newNode->data<<" ";
+/*

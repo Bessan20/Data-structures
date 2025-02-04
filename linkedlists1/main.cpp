@@ -14,6 +14,18 @@ bool isEmpty() {
     return (head == NULL);
 }
 
+int countList() {
+
+    int count = 0;
+    Node* temp = head;
+    while(temp != NULL) {
+
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
+
 void insertAtBeginning(int newValue) {
     
     Node* newNode = new Node();//*allocate memory for new node
@@ -63,6 +75,10 @@ void insertBeforeGivenNode(int givenNode, int newValue) {
 
     else {
 
+      if(givenNode == head->data) 
+          insertAtBeginning(newValue);
+     
+     else {
       bool found = false;
       Node* curr = head;
       Node* prev = head;
@@ -71,23 +87,29 @@ void insertBeforeGivenNode(int givenNode, int newValue) {
         
         if(curr->data == givenNode) {
 
-            curr = curr->next;         
+                     
             Node* newNode = new Node();
             newNode->data = newValue;
             newNode->next = curr; 
-            cout<<prev->data<<" "<<curr->data<<"\n";
-            prev = newNode;
+            cout<<curr->data<<" "<<prev->data<<"\n";
+            prev->next = newNode;
             found = true;
-            cout<<"The given node added successfully.\n";
+            
             break;
         }
         prev = curr;
         curr = curr->next;
 
       }
+      
+      if(found == false ) {
 
-      if(found == false )
          cout<<"The node is not found.\n";
+         return;
+
+      }
+    }
+    cout<<"The given node added successfully.\n";
     }
 
 }
@@ -122,17 +144,33 @@ void insertAfterGivenNode(int givenNode , int newValue) {
         if(found == false)cout<<"The node is not found.\n";
     }
 }
-int countList() {
 
-    int count = 0;
-    Node* temp = head;
-    while(temp != NULL) {
+void insertAtMiddle(int newValue) {
 
-        count++;
+    if(isEmpty()) 
+      
+      cout<<"The list is empty";
+
+    else {
+
+        Node* temp = head;
+        Node* prev = head;
+        Node* newNode = new Node();
+        newNode->data = newValue;
+        int count = 1 ;
+        while(count<(countList()>>1))
+        {
+            temp = temp->next;
+            count++;
+        } 
+        prev = temp;
         temp = temp->next;
+        newNode->next = temp;
+        prev->next = newNode;
+        
     }
-    return count;
 }
+
 void printList() {
 
    if(isEmpty()) {
@@ -290,23 +328,24 @@ void searchList(int value) {
 }
 int main() {
     
-    insertAtTheEnd(1);
+    
     insertAtTheEnd(2);
     insertAtTheEnd(3);
     insertAtTheEnd(4);
     insertAtTheEnd(5);
     insertAtTheEnd(6);
-    
+    insertAtBeginning(1);
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); 
     //insertBeforeGivenNode(1,4);
+    insertAtMiddle(10);
     printList();
-    insertAfterGivenNode(4,6);
+    /*insertAfterGivenNode(4,6);
     printList();
     printKthNode(3); 
     printMiddleOfList();
-    /*printOddList(); 
+    printOddList(); 
     printEvenList(); 
     searchList(30); 
     searchList(70); */
