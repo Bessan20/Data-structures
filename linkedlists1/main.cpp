@@ -326,6 +326,61 @@ void searchList(int value) {
         cout << (found ? "The element is found.\n" : "The element is not found.\n");
     }
 }
+
+void reverseList() {
+
+    if(isEmpty())
+
+       cout<<"The list is empty!";
+
+    else {
+
+        Node* prev = NULL;
+        Node* curr = head;
+        Node* after = NULL;
+
+        while(curr != NULL) {
+
+            after = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = after;
+        }
+        head = prev;
+    }
+}
+
+void deleteNode(int delValue) {
+
+    if(isEmpty()) 
+
+       cout<<"The list is Empty!";
+
+    else {
+
+        Node* curr = head;
+        if(delValue == head->data) {
+             head = head->next;
+             free(curr);
+             return;
+        }
+
+        else {
+        
+        Node* prev = NULL;
+        while(curr != NULL) {
+
+            if(curr->data == delValue) {
+                prev->next = curr->next;
+                free(curr);
+                break;
+            }
+            prev = curr;
+            curr = curr->next;
+        } 
+    }
+    }
+}
 int main() {
     
     
@@ -340,6 +395,9 @@ int main() {
     printList(); 
     //insertBeforeGivenNode(1,4);
     insertAtMiddle(10);
+    printList();
+    //reverseList();
+    deleteNode(6);
     printList();
     /*insertAfterGivenNode(4,6);
     printList();
