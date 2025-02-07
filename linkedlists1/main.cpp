@@ -323,7 +323,7 @@ void searchList(int value) {
             temp = temp->next;
         }
         
-        cout << (found ? "The element is found.\n" : "The element is not found.\n");
+        cout << (found ? "found.\n" : "not found.\n");
     }
 }
 
@@ -348,6 +348,13 @@ void reverseList() {
         }
         head = prev;
     }
+}
+
+void printKthNodeFromEnd(int k) {
+
+    reverseList();
+    printKthNode(k);
+
 }
 
 void deleteNode(int delValue) {
@@ -381,10 +388,115 @@ void deleteNode(int delValue) {
     }
     }
 }
+
+void deleteAtBeginning() {
+
+    if(isEmpty())
+
+         cout<<"The list is empty!";
+
+    else {
+
+        Node* temp = head->next;
+        free(head);
+        head = temp;
+    }
+}
+
+void deleteAtTheEnd() {
+
+    if(isEmpty())
+
+         cout<<"The list is empty!";
+
+    else {
+
+       Node* temp = head;
+       Node* prev = head;
+       while(temp != NULL) {
+        
+        if(temp->next == NULL){
+
+            if(temp == head) {
+
+                head = NULL;
+                free(temp);
+                break;
+            }
+            prev->next = NULL;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+        
+       }
+       
+    }
+}
+
+void deleteAtPosition(int postion) {
+
+    int length = countList();
+    if(postion <= 0 || postion > length) {
+
+        cout<<"Invalid position!";
+        return;
+    }
+
+    else {
+
+        if(isEmpty()) {
+            
+            cout<<"The list is empty!";
+
+        }
+
+        else {
+
+            if(postion ==1) {
+
+                deleteAtBeginning();
+                return;
+            }
+
+            else {
+
+                if(postion == length) {
+
+                    deleteAtTheEnd();
+                    return;
+
+                }
+
+                else {
+                    Node* temp = head;
+                    Node* prev = head;
+                    int count = 1;
+                    while(temp != NULL) {
+
+                        if(count == postion) {
+                            
+                            prev->next = temp->next;
+                            free(temp);
+                            break;
+                        }
+                        count++;
+                        prev = temp;
+                        temp = temp->next;
+                    }
+                }
+                
+            }
+        }
+        }
+}
+
+
 int main() {
     
     
-    insertAtTheEnd(2);
+   insertAtTheEnd(2);
     insertAtTheEnd(3);
     insertAtTheEnd(4);
     insertAtTheEnd(5);
@@ -394,11 +506,16 @@ int main() {
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); 
     //insertBeforeGivenNode(1,4);
-    insertAtMiddle(10);
+    //insertAtMiddle(10);
     printList();
     //reverseList();
-    deleteNode(6);
+    //deleteNode(2);
+   // deleteList();
+  // deleteAtBeginning();
+    //deleteAtTheEnd();
+    //deleteAtPosition(3);
     printList();
+    printKthNodeFromEnd(6);  
     /*insertAfterGivenNode(4,6);
     printList();
     printKthNode(3); 
@@ -407,7 +524,7 @@ int main() {
     printEvenList(); 
     searchList(30); 
     searchList(70); */
-    
+    //1 2 3 4 5 6 7 8 9 10 
     
     return 0;
 }
