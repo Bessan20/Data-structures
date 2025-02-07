@@ -220,6 +220,31 @@ void printKthNode(float k) {
     }
 }
 
+void printEveryKthNode(int k) {
+
+    if(isEmpty()) {
+
+        cout<<"The list is empty!";
+
+    }
+
+    else {
+
+        int count = 1 ;
+        Node* temp = head;
+        while(temp != NULL ) {
+
+            if(count%k == 0) {
+
+                cout<<temp->data<<" ";
+            } 
+            ++count;
+            temp = temp->next;
+        }
+        cout<<"\n";
+    }
+}
+
 void printMiddleOfList() {
 
     if(isEmpty()) 
@@ -354,6 +379,7 @@ void printKthNodeFromEnd(int k) {
 
     reverseList();
     printKthNode(k);
+    reverseList();
 
 }
 
@@ -492,7 +518,56 @@ void deleteAtPosition(int postion) {
         }
 }
 
+/*void deleteEveryKthNode(int k) {
 
+    if(isEmpty()) {
+
+        cout<<"The list is empty!";
+        return;
+    }
+
+    else {
+
+        Node* temp = head;
+        Node* prev = NULL;
+        Node* store = NULL;
+        int count = 1;
+        while(temp != NULL) {
+
+            if(count%k == 0) {
+
+                prev->next = temp->next;
+                store = temp;
+                free(store);
+            }
+            ++count;
+            prev = temp;
+            temp = temp->next;
+
+        }
+    }
+}*/
+
+void countOccurrences(int value) {
+
+    if(isEmpty()) {
+        
+        cout<<"The list is empty!";
+    }
+
+    else {
+
+        int count = 0 ;
+        Node* temp = head;
+        while(temp !=NULL) {
+
+            if(temp->data == value)
+               count++;
+               temp = temp->next;
+        }
+        cout<<"The number of occurrences of "<<value<<" is : "<<count<<"\n";
+    }
+}
 int main() {
     
     
@@ -501,24 +576,33 @@ int main() {
     insertAtTheEnd(4);
     insertAtTheEnd(5);
     insertAtTheEnd(6);
+    insertAtTheEnd(7);
+    insertAtTheEnd(3);
+    insertAtTheEnd(2);
+    insertAtTheEnd(1);
     insertAtBeginning(1);
     
     cout<<"The number of elements in the list is : "<<countList()<<"\n";
     printList(); 
     //insertBeforeGivenNode(1,4);
     //insertAtMiddle(10);
-    printList();
+    //printList();
     //reverseList();
     //deleteNode(2);
    // deleteList();
   // deleteAtBeginning();
     //deleteAtTheEnd();
     //deleteAtPosition(3);
-    printList();
+    //deleteEveryKthNode(3);
+   // printList();
     printKthNodeFromEnd(6);  
+    //countOccurrences(3);
+    //countOccurrences(1);
+    countOccurrences(10);
+    printEveryKthNode(2);
     /*insertAfterGivenNode(4,6);
     printList();
-    printKthNode(3); 
+    printKthNode(2); 
     printMiddleOfList();
     printOddList(); 
     printEvenList(); 
